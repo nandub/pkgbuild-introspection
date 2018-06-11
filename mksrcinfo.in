@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 usage() {
   printf '%s\n' \
@@ -61,7 +61,7 @@ while getopts ':ho:p:' flag; do
 done
 shift $(( OPTIND - 1 ))
 
-srcinfo_tmp=$(mktemp --tmpdir srcinfo.XXXXXX)
+srcinfo_tmp=$(gmktemp --tmpdir srcinfo.XXXXXX)
 trap 'rm "$srcinfo_tmp"' EXIT
 
 if makepkg -p "$buildscript" --printsrcinfo >"$srcinfo_tmp"; then
